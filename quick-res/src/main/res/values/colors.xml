@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--系统色-->
+    <color name="quick_S1_EBF6FF">#EBF6FF</color>
+    <color name="quick_S2_9ED3FF">#9ED3FF</color>
+    <color name="quick_S3_6BB0FF">#6BB0FF</color>
+    <color name="quick_S4_3D94FF">#3D94FF</color>
+    <color name="quick_S5_247BFF">#247BFF</color>
+    <color name="quick_S6_1459D9">#145CD9</color>
+    <color name="quick_S7_0740B3">#0740B3</color>
+    <color name="quick_S8_002A8C">#002A8C</color>
+    <color name="quick_S9_001B66">#001B66</color>
+
+    <!--中性色-->
+    <color name="quick_M1_1D2126">#1D2126</color>
+    <color name="quick_M2_33373D">#33373D</color>
+    <color name="quick_M3_5E6166">#5E6166</color>
+    <color name="quick_M4_868A8F">#868A8F</color>
+    <color name="quick_M5_B0B3B8">#B0B3B8</color>
+    <color name="quick_M6_C9CCD1">#C9CCD1</color>
+    <color name="quick_M7_E6E8EB">#E6E8EB</color>
+    <color name="quick_M8_F0F2F5">#F0F2F5</color>
+    <color name="quick_M9_F5F7FA">#F5F7FA</color>
+    <color name="quick_M10_FFFFFF">#FFFFFF</color>
+    <color name="quick_M11_000000">#000000</color>
+
+    <!--红色 辅助色-->
+    <color name="quick_red1_FFE7E6">#FFE7E6</color>
+    <color name="quick_red2_FFC0BF">#FFC0BF</color>
+    <color name="quick_red3_FA8282">#FA8282</color>
+    <color name="quick_red4_F0595E">#F0595E</color>
+    <color name="quick_red5_E34950">#E34950</color>
+    <color name="quick_red6_D13B45">#D13B45</color>
+
+    <!--橘色 辅助色-->
+    <color name="quick_orange1_FFF6D9">#FFF6D9</color>
+    <color name="quick_orange2_FFDD7F">#FFDD7F</color>
+    <color name="quick_orange3_FFC43B">#FFC43B</color>
+    <color name="quick_orange4_FFAA00">#FFAA00</color>
+    <color name="quick_orange5_F79D00">#F79D00</color>
+
+    <!--绿色 辅助色-->
+    <color name="quick_green1_E6FFFA">#E6FFFA</color>
+    <color name="quick_green2_75EBD1">#75EBD1</color>
+    <color name="quick_green3_2BE0B9">#2BE0B9</color>
+    <color name="quick_green4_0DD1A0">#0DD1A0</color>
+    <color name="quick_green5_00BF8F">#00BF8F</color>
+
+    <!--紫色 辅助色-->
+    <color name="quick_purple1_EDEEFF">#EDEEFF</color>
+    <color name="quick_purple2_CCCEFF">#CCCEFF</color>
+    <color name="quick_purple3_9696FF">#9696FF</color>
+    <color name="quick_purple4_7773FF">#7773FF</color>
+    <color name="quick_purple5_6B61FF">#6B61FF</color>
+
+    <!--青色 辅助色-->
+    <color name="quick_cyan1_DEFAF7">#DEFAF7</color>
+    <color name="quick_cyan2_87EDE6">#87EDE6</color>
+    <color name="quick_cyan3_37DED8">#37DED8</color>
+    <color name="quick_cyan4_10C9C9">#10C9C9</color>
+    <color name="quick_cyan5_00B4BA">#00B4BA</color>
+
+    <!--粉色 辅助色-->
+    <color name="quick_pink1_FFF3F8">#FFF3F8</color>
+    <color name="quick_pink2_EB428E">#EB428E</color>
+    <color name="quick_pink3_FFBDD8">#FFBDD8</color>
+
+    <!--功能色-->
+    <color name="quick_function_info">@color/quick_S5_247BFF</color>
+    <color name="quick_function_success">@color/quick_green5_00BF8F</color>
+    <color name="quick_function_error">@color/quick_red5_E34950</color>
+    <color name="quick_function_warning">@color/quick_red5_E34950</color>
+
+    <!-- 固定色（不随主题变化，日夜一致） -->
+    <color name="quick_white">#FFFFFF</color>
+    <color name="quick_transparent">#00000000</color>
+
+    <!-- 叠加/透明色（日夜一致） -->
+    <color name="quick_black_4alpha">#0A000000</color>
+    <color name="quick_black_12alpha">#20000000</color>
+    <color name="quick_black_25alpha">#40000000</color>
+    <color name="quick_white_70alpha">#B3FFFFFF</color>
+
+    <!-- 组件专用色 -->
+    <color name="quick_line_divider">#DDDDDD</color>
+    <color name="quick_dialog_button_divider">#E8E8E8</color>
+    <color name="quick_sort_text_hint">#990F1114</color>
+    <color name="quick_toast_bg">#B30F1114</color>
+    <color name="quick_toast_bg_dark">#0F1114</color>
+    <color name="quick_S6_145CD9_50alpha">#80145CD9</color>
+    <color name="quick_S2_9ED3FF_50alpha">#809ecfff</color>
+
+    <!-- 品牌/第三方色 -->
+    <color name="quick_wechat_brand">#07C160</color>
+
+    <!-- 搜索模块 -->
+    <color name="quick_search_highlight">#FF9900</color>
+
+    <!-- 登录页专用 -->
+    <color name="quick_login_header_start">#1A3A6B</color>
+    <color name="quick_login_header_end">#0F1F3A</color>
+    <color name="quick_textfield_stroke_light">#8E9299</color>
+    <color name="quick_textfield_stroke_dark">#585D66</color>
+
+    <!-- 启动图标（Launcher，不随主题变化） -->
+    <color name="quick_launcher_bg_dark">#2C3E50</color>
+    <color name="quick_launcher_bg_mid">#34495E</color>
+    <color name="quick_launcher_bg_light">#2E4053</color>
+    <color name="quick_launcher_fg_blue">#3498DB</color>
+    <color name="quick_launcher_fg_yellow">#F1C40F</color>
+
+</resources>

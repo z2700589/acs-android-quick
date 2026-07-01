@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.QuickSample" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:colorBackground">@color/quick_M10_FFFFFF</item>
+        <item name="colorOnBackground">@color/quick_M1_1D2126</item>
+        <item name="android:windowBackground">@color/quick_M10_FFFFFF</item>
+        <item name="colorSurface">@color/quick_M8_F0F2F5</item>
+        <item name="colorOnSurface">@color/quick_M1_1D2126</item>
+        <item name="colorPrimary">@color/quick_S4_3D94FF</item>
+        <item name="colorOnPrimary">@color/quick_M10_FFFFFF</item>
+        <item name="colorPrimaryVariant">@color/quick_S3_6BB0FF</item>
+        <item name="colorSecondary">@color/quick_purple4_7773FF</item>
+        <item name="colorOnSecondary">@color/quick_M10_FFFFFF</item>
+        <item name="colorError">@color/quick_red4_F0595E</item>
+        <item name="colorOnError">@color/quick_M10_FFFFFF</item>
+        <item name="colorOutline">@color/quick_M5_B0B3B8</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/quick_M11_000000</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+    <style name="Theme.Login" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/quick_S4_3D94FF</item>
+        <item name="colorOnPrimary">@color/quick_M10_FFFFFF</item>
+        <item name="colorPrimaryContainer">@color/quick_S3_6BB0FF</item>
+        <item name="colorOnPrimaryContainer">@color/quick_S9_001B66</item>
+        <item name="colorSecondary">@color/quick_purple4_7773FF</item>
+        <item name="colorOnSecondary">@color/quick_M10_FFFFFF</item>
+        <item name="colorSecondaryContainer">@color/quick_purple2_CCCEFF</item>
+        <item name="colorOnSecondaryContainer">@color/quick_purple5_6B61FF</item>
+        <item name="colorTertiary">@color/quick_cyan4_10C9C9</item>
+        <item name="colorOnTertiary">@color/quick_M10_FFFFFF</item>
+        <item name="colorTertiaryContainer">@color/quick_cyan2_87EDE6</item>
+        <item name="colorOnTertiaryContainer">@color/quick_cyan5_00B4BA</item>
+        <item name="colorError">@color/quick_red4_F0595E</item>
+        <item name="colorOnError">@color/quick_M10_FFFFFF</item>
+        <item name="colorErrorContainer">@color/quick_red2_FFC0BF</item>
+        <item name="colorOnErrorContainer">@color/quick_red5_E34950</item>
+        <item name="android:colorBackground">@color/quick_M10_FFFFFF</item>
+        <item name="colorOnBackground">@color/quick_M1_1D2126</item>
+        <item name="colorSurface">@color/quick_M8_F0F2F5</item>
+        <item name="colorOnSurface">@color/quick_M1_1D2126</item>
+        <item name="colorSurfaceVariant">@color/quick_M7_E6E8EB</item>
+        <item name="colorOnSurfaceVariant">@color/quick_M2_33373D</item>
+        <item name="colorOutline">@color/quick_M5_B0B3B8</item>
+        <item name="colorOutlineVariant">@color/quick_M6_C9CCD1</item>
+        <item name="android:windowBackground">@color/quick_M10_FFFFFF</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/quick_M11_000000</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

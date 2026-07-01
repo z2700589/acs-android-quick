@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.acs.quick.common.data.state.UIState" />
+
+        <variable
+            name="viewModel"
+            type="com.acs.quick.sample.login.LoginViewModel" />
+    </data>
+
+    <!-- 单屏适配：fillViewport + clipToPadding=false 让蓝色头部延伸到状态栏后方 -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        android:scrollbars="none"
+        tools:context=".login.LoginActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <!-- ============================================================
+                 顶部品牌区域 — 蓝色渐变（高度 30%）
+                 ============================================================ -->
+            <View
+                android:id="@+id/view_top_bg"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/quick_bg_login_header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/guideline_header_end" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_header_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.30" />
+
+            <!-- 品牌标识组 -->
+            <LinearLayout
+                android:id="@+id/layout_brand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/guideline_header_end"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.55">
+
+                <!-- Logo -->
+                <FrameLayout
+                    android:layout_width="@dimen/quick_Sp15_56"
+                    android:layout_height="@dimen/quick_Sp15_56"
+                    android:background="@drawable/quick_shape_logo_circle_shadow">
+
+                    <ImageView
+                        android:id="@+id/iv_logo"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/login_app_name"
+                        android:src="@drawable/quick_ic_login_logo"
+                        app:tint="@color/quick_S5_247BFF" />
+                </FrameLayout>
+
+                <!-- 应用名称 -->
+                <TextView
+                    android:id="@+id/tv_app_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/quick_Sp4_12"
+                    android:text="@string/login_app_name"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/quick_T2_24"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.05" />
+
+                <!-- 副标题 -->
+                <TextView
+                    android:id="@+id/tv_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/quick_Sp1_4"
+                    android:text="@string/login_subtitle"
+                    android:textColor="@color/quick_white_70alpha"
+                    android:textSize="@dimen/quick_T6_12"
+                    android:letterSpacing="0.08" />
+            </LinearLayout>
+
+            <!-- ============================================================
+                 表单区域 — 紧凑布局，单屏完整展示
+                 ============================================================ -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_form"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:paddingHorizontal="@dimen/quick_Sp7_24"
+                android:paddingTop="@dimen/quick_Sp5_16"
+                android:paddingBottom="@dimen/quick_Sp5_16"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline_header_end">
+
+                <!-- 欢迎语 -->
+                <TextView
+                    android:id="@+id/tv_form_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_welcome_back"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="@dimen/quick_T3_18"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_form_subtitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_form_subtitle"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:textSize="@dimen/quick_T6_12"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_form_title" />
+
+                <!-- 手机号输入框 -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_phone"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/quick_Sp6_20"
+                    android:hint="@string/login_phone_hint"
+                    app:boxStrokeColor="@color/quick_login_textfield_stroke"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="2dp"
+                    app:endIconMode="clear_text"
+                    app:endIconTint="?attr/colorOnSurfaceVariant"
+                    app:hintTextColor="@color/quick_login_textfield_hint"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_form_subtitle"
+                    app:prefixText="@string/login_phone_prefix"
+                    app:prefixTextColor="?attr/colorOnSurfaceVariant">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="@dimen/quick_T5_14" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- 密码输入框 -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_password"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/quick_Sp4_12"
+                    android:hint="@string/login_password_hint"
+                    app:boxStrokeColor="@color/quick_login_textfield_stroke"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="2dp"
+                    app:endIconMode="password_toggle"
+                    app:endIconTint="?attr/colorOnSurfaceVariant"
+                    app:hintTextColor="@color/quick_login_textfield_hint"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/til_phone">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="@dimen/quick_T5_14" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- 记住密码 + 忘记密码 -->
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/cb_remember"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@{viewModel.rememberMe}"
+                    android:text="@string/login_remember_me"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:textSize="@dimen/quick_T6_12"
+                    app:buttonTint="?attr/colorPrimary"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/til_password" />
+
+                <TextView
+                    android:id="@+id/tv_forgot_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingHorizontal="@dimen/quick_Sp1_4"
+                    android:paddingVertical="@dimen/quick_Sp1_4"
+                    android:text="@string/login_forgot_password"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="@dimen/quick_T6_12"
+                    app:layout_constraintBottom_toBottomOf="@id/cb_remember"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/cb_remember" />
+
+                <!-- 登录按钮 -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_login"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/quick_Sp13_48"
+                    android:layout_marginTop="@dimen/quick_Sp7_24"
+                    android:enabled="@{viewModel.isFormValid}"
+                    android:text="@string/login_button"
+                    android:textSize="@dimen/quick_T4_16"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.12"
+                    app:cornerRadius="@dimen/quick_Ra4_12"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cb_remember" />
+
+                <!-- 用户协议（紧凑单行） -->
+                <LinearLayout
+                    android:id="@+id/layout_agreement"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/quick_Sp4_12"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_login">
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/cb_agreement"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:checked="@{viewModel.agreedToTerms}"
+                        app:buttonTint="?attr/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/login_agreement_prefix"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="@dimen/quick_T7_10" />
+
+                    <TextView
+                        android:id="@+id/tv_user_agreement"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:text="@string/login_user_agreement"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="@dimen/quick_T7_10" />
+                </LinearLayout>
+
+                <!-- 注册入口 -->
+                <LinearLayout
+                    android:id="@+id/layout_register_entry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/quick_Sp1_4"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layout_agreement">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/login_no_account"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="@dimen/quick_T6_12" />
+
+                    <TextView
+                        android:id="@+id/tv_register"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingHorizontal="@dimen/quick_Sp1_4"
+                        android:paddingVertical="@dimen/quick_Sp1_4"
+                        android:text="@string/login_register_now"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="@dimen/quick_T6_12"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

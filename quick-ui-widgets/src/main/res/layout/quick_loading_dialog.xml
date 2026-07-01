@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 根布局包裹屏幕左右 24dp 边距，确保 Loading 不超出屏幕边界 -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="24dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/quick_bg_round_white"
+        android:gravity="center"
+        android:minWidth="120dp"
+        android:minHeight="120dp"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <ProgressBar
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/quick_S5_247BFF" />
+
+        <TextView
+            android:id="@+id/quick_tv_loading_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="加载中..."
+            android:textColor="@color/quick_M3_5E6166"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</FrameLayout>

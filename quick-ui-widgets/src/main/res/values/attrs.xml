@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
+
+    <declare-styleable name="TisEditTextWithClear">
+        <attr name="quick_clearIcon" format="reference" />
+    </declare-styleable>
+
+
+    <declare-styleable name="TisNavigationBar">
+        <!-- 标题-->
+        <attr name="quick_title" format="string" />
+
+        <!-- 导航样式 1、无操作区 2、小操作区 3、大操作区-->
+        <attr name="quick_bar_style" format="enum">
+            <enum name="normal" value="1" />
+            <enum name="small_operation" value="2" />
+            <enum name="big_operation" value="3" />
+        </attr>
+        <!--左操作区按钮样式-->
+        <attr name="quick_left_text" format="string" />
+        <attr name="quick_left_text_color" format="color" />
+        <attr name="quick_left1_icon" format="reference" />
+        <attr name="quick_left2_icon" format="reference" />
+        <!--右操作区按钮样式-->
+        <attr name="quick_show_right" format="boolean" />
+        <attr name="quick_right_text" format="string" />
+        <attr name="quick_right_text_color" format="color" />
+        <attr name="quick_right1_icon" format="reference" />
+        <attr name="quick_right2_icon" format="reference" />
+    </declare-styleable>
+
+
+    <declare-styleable name="TisSlidingTabLayout">
+        <!-- indicator -->
+        <attr name="quick_stl_indicator_show" format="boolean" />
+        <attr name="quick_stl_text_select_size" format="dimension" />
+        <attr name="quick_stl_indicator_color" format="color" />
+        <attr name="quick_stl_indicator_height" format="dimension" />
+        <attr name="quick_stl_indicator_width" format="dimension" />
+        <attr name="quick_stl_indicator_margin_left" format="dimension" />
+        <attr name="quick_stl_indicator_margin_top" format="dimension" />
+        <attr name="quick_stl_indicator_margin_right" format="dimension" />
+        <attr name="quick_stl_indicator_margin_bottom" format="dimension" />
+        <attr name="quick_stl_indicator_corner_radius" format="dimension" />
+        <attr name="quick_stl_indicator_gravity">
+            <!-- Push object to the top of its container, not changing its size. -->
+            <flag name="top" value="0x30" />
+            <!-- Push object to the bottom of its container, not changing its size. -->
+            <flag name="bottom" value="0x50" />
+            <!-- Push object to the left of its container, not changing its size. -->
+            <flag name="left" value="0x03" />
+            <!-- Push object to the right of its container, not changing its size. -->
+            <flag name="right" value="0x05" />
+            <!-- Place object in the vertical center of its container, not changing its size. -->
+            <flag name="center_vertical" value="0x10" />
+            <!-- Grow the vertical size of the object if needed so it completely fills its container. -->
+            <flag name="fill_vertical" value="0x70" />
+            <!-- Place object in the horizontal center of its container, not changing its size. -->
+            <flag name="center_horizontal" value="0x01" />
+            <!-- Grow the horizontal size of the object if needed so it completely fills its container. -->
+            <flag name="fill_horizontal" value="0x07" />
+            <!-- Place the object in the center of its container in both the vertical and horizontal axis, not changing its size. -->
+            <flag name="center" value="0x11" />
+            <!-- Grow the horizontal and vertical size of the object if needed so it completely fills its container. -->
+            <flag name="fill" value="0x77" />
+            <!-- Additional option that can be set to have the top and/or bottom edges of
+                 the child clipped to its container's bounds.
+                 The clip will be based on the vertical gravity: a top gravity will clip the bottom
+                 edge, a bottom gravity will clip the top edge, and neither will clip both edges. -->
+            <flag name="clip_vertical" value="0x80" />
+            <!-- Additional option that can be set to have the left and/or right edges of
+                 the child clipped to its container's bounds.
+                 The clip will be based on the horizontal gravity: a left gravity will clip the right
+                 edge, a right gravity will clip the left edge, and neither will clip both edges. -->
+            <flag name="clip_horizontal" value="0x08" />
+            <!-- Push object to the beginning of its container, not changing its size. -->
+            <flag name="start" value="0x00800003" />
+            <!-- Push object to the end of its container, not changing its size. -->
+            <flag name="end" value="0x00800005" />
+        </attr>
+        <attr name="quick_stl_indicator_style" format="integer" />
+        <attr name="quick_stl_indicator_width_equal_title" format="string" />
+
+        <!-- underline -->
+        <attr name="quick_stl_underline_color" format="color" />
+        <attr name="quick_stl_underline_height" format="dimension" />
+        <attr name="quick_stl_underline_gravity">
+            <!-- Push object to the top of its container, not changing its size. -->
+            <flag name="top" value="0x30" />
+            <!-- Push object to the bottom of its container, not changing its size. -->
+            <flag name="bottom" value="0x50" />
+            <!-- Push object to the left of its container, not changing its size. -->
+            <flag name="left" value="0x03" />
+            <!-- Push object to the right of its container, not changing its size. -->
+            <flag name="right" value="0x05" />
+            <!-- Place object in the vertical center of its container, not changing its size. -->
+            <flag name="center_vertical" value="0x10" />
+            <!-- Grow the vertical size of the object if needed so it completely fills its container. -->
+            <flag name="fill_vertical" value="0x70" />
+            <!-- Place object in the horizontal center of its container, not changing its size. -->
+            <flag name="center_horizontal" value="0x01" />
+            <!-- Grow the horizontal size of the object if needed so it completely fills its container. -->
+            <flag name="fill_horizontal" value="0x07" />
+            <!-- Place the object in the center of its container in both the vertical and horizontal axis, not changing its size. -->
+            <flag name="center" value="0x11" />
+            <!-- Grow the horizontal and vertical size of the object if needed so it completely fills its container. -->
+            <flag name="fill" value="0x77" />
+            <!-- Additional option that can be set to have the top and/or bottom edges of
+                 the child clipped to its container's bounds.
+                 The clip will be based on the vertical gravity: a top gravity will clip the bottom
+                 edge, a bottom gravity will clip the top edge, and neither will clip both edges. -->
+            <flag name="clip_vertical" value="0x80" />
+            <!-- Additional option that can be set to have the left and/or right edges of
+                 the child clipped to its container's bounds.
+                 The clip will be based on the horizontal gravity: a left gravity will clip the right
+                 edge, a right gravity will clip the left edge, and neither will clip both edges. -->
+            <flag name="clip_horizontal" value="0x08" />
+            <!-- Push object to the beginning of its container, not changing its size. -->
+            <flag name="start" value="0x00800003" />
+            <!-- Push object to the end of its container, not changing its size. -->
+            <flag name="end" value="0x00800005" />
+        </attr>
+
+        <!-- divider -->
+        <attr name="quick_stl_divider_color" format="color" />
+        <attr name="quick_stl_divider_width" format="dimension" />
+        <attr name="quick_stl_divider_padding" format="dimension" />
+
+        <!-- tab -->
+        <attr name="quick_stl_tab_padding" format="dimension" />
+        <attr name="quick_stl_tab_space_equal" format="boolean" />
+        <attr name="quick_stl_tab_width" format="dimension" />
+        <attr name="quick_stl_tab_padding_start" format="dimension" />
+        <attr name="quick_stl_tab_padding_center" format="dimension" />
+        <attr name="quick_stl_tab_padding_end" format="dimension" />
+
+        <!-- title -->
+        <attr name="quick_stl_textSize" format="dimension" />
+        <attr name="quick_stl_textSelectColor" format="color" />
+        <attr name="quick_stl_textUnselectColor" format="color" />
+        <attr name="quick_stl_textBold">
+            <flag name="none" value="0" />
+            <flag name="whenSelect" value="1" />
+            <flag name="both" value="2" />
+        </attr>
+        <attr name="quick_stl_textAllCaps" format="boolean" />
+
+    </declare-styleable>
+
+    <declare-styleable name="TisMsgView">
+        <!-- 圆角矩形背景色 -->
+        <attr name="quick_mv_background_color" format="color" />
+        <!-- 圆角弧度,单位dp-->
+        <attr name="quick_mv_corner_radius" format="dimension" />
+        <!-- 圆角弧度,单位dp-->
+        <attr name="quick_mv_stroke_width" format="dimension" />
+        <!-- 圆角边框颜色-->
+        <attr name="quick_mv_stroke_color" format="color" />
+        <!-- 圆角弧度是高度一半-->
+        <attr name="quick_mv_is_radius_half_height" format="boolean" />
+        <!-- 圆角矩形宽高相等,取较宽高中大值-->
+        <attr name="quick_mv_is_width_height_equal" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="TisTextButton">
+        <attr name="android:text" />
+        <attr name="srcCompat" format="reference" />
+    </declare-styleable>
+
+    <!--自定义字母索引属性-->
+    <declare-styleable name="TisSideBarLayout">
+        <attr name="sidebarSelectTextColor" format="color|reference" />
+        <attr name="sidebarUnSelectTextColor" format="color|reference" />
+        <attr name="sidebarSelectTextSize" format="dimension" />
+        <attr name="sidebarUnSelectTextSize" format="dimension" />
+
+        <attr name="sidebarWordBackground" format="reference" />
+        <attr name="sidebarWordTextColor" format="color|reference" />
+        <attr name="sidebarWordTextSize" format="dimension" />
+
+        <attr name="is_auto_play" format="boolean" />
+        <attr name="scroll_time" format="integer" />
+
+    </declare-styleable>
+
+    <declare-styleable name="TisFormLayout">
+        <attr name="quick_form_style">
+            <flag name="no_title" value="0" />
+            <flag name="horizontal" value="1" />
+            <flag name="vertical" value="2" />
+        </attr>
+        <attr name="quick_input_type">
+            <flag name="select_single" value="0" />
+            <flag name="select_multiple" value="1" />
+            <flag name="input" value="2" />
+        </attr>
+        <attr name="quick_form_title" format="string" />
+        <attr name="quick_show_verify" format="boolean" />
+        <attr name="quick_show_unit" format="boolean" />
+        <attr name="quick_unit" format="string" />
+        <attr name="quick_unit_color" format="color" />
+        <attr name="quick_show_arrow" format="boolean" />
+        <attr name="quick_show_line" format="boolean" />
+        <attr name="android:hint" />
+        <attr name="android:text" />
+        <attr name="android:gravity" />
+        <attr name="android:inputType" />
+    </declare-styleable>
+
+    <declare-styleable name="TisChrysanthemumLoadingView">
+        <attr name="quick_pathColor" format="color" />
+        <attr name="quick_segmentLength" format="dimension" />
+        <attr name="quick_segmentWidth" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="TisSearchNavigationBar">
+        <attr name="quick_search_edit_hint" format="string" />
+        <attr name="quick_search_icon_show" format="boolean" />
+        <attr name="quick_show_cancel" format="boolean" />
+        <attr name="quick_show_padding_top" format="boolean" />
+    </declare-styleable>
+
+    <!--PickerView-->
+    <declare-styleable name="pickerview">
+        <attr name="wheelview_gravity">
+            <enum name="center" value="17" />
+            <enum name="left" value="3" />
+            <enum name="right" value="5" />
+        </attr>
+        <attr name="wheelview_textSize" format="dimension" />
+        <attr name="wheelview_textColorOut" format="color" />
+        <attr name="wheelview_textColorCenter" format="color" />
+        <attr name="wheelview_dividerColor" format="color" />
+        <attr name="wheelview_lineSpacingMultiplier" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="TisMaxRecyclerView">
+        <attr name="maxHeight" format="dimension" />
+    </declare-styleable>
+</resources>

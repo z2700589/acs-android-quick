@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        按钮交互状态色（夜间模式 v3 — 优秀 App 深色模式）
+    -->
+    <color name="quick_primary_pressed_overlay">#1FFFFFFF</color>
+    <color name="quick_primary_disable">#664B8BE8</color>
+    <color name="quick_primary_hover_overlay">#0FFFFFFF</color>
+    <color name="quick_danger_pressed">#14FFFFFF</color>
+    <color name="quick_danger_disable">#66E85C5C</color>
+    <color name="quick_primary_text_disable">#66D1D3D8</color>
+    <color name="quick_pressed_overlay_general">#10FFFFFF</color>
+</resources>

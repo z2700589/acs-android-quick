@@ -1,0 +1,5 @@
+<resources>
+    <item name="quick_app_name" type="string">谷川信息系统</item>
+    <item name="quick_cancel" type="string">取消</item>
+    <item name="quick_search_layout_default_hint" type="string">输入姓名、手机号搜索</item>
+</resources>

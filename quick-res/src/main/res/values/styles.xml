@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="quick_theme_full_screen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">@color/quick_S5_247BFF</item>
+        <item name="background">@color/quick_M9_F5F7FA</item>
+        <!--将顶部状态栏设置为透明，并将界面内容布局上边界上提至状态栏顶部-->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:screenOrientation">portrait</item>
+        <item name="android:configChanges">keyboardHidden|orientation|screenSize</item>
+        <!--如果有底部虚拟导航栏，则将底部虚拟导航栏设置为透明，并将界面内容布局下边界下沉至虚拟导航栏底部-->
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowBackground">@color/quick_M10_FFFFFF</item>
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
+
+    <style name="quick_theme_fit_system_windows" parent="quick_theme_full_screen">
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+    <style name="quick_horizontal_line">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/quick_line_divider</item>
+    </style>
+
+    <!--标题字体样式-->
+    <style name="quick_title_text_style">
+        <item name="android:textColor">@color/quick_M1_1D2126</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/quick_T3_18</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!--标题按钮字体样式-->
+    <style name="quick_title_btn_text_style">
+        <item name="android:textColor">@color/quick_M1_1D2126</item>
+        <item name="android:textSize">@dimen/quick_T4_16</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!--标题按钮字体样式-->
+    <style name="quick_desc_btn_text_style">
+        <item name="android:textColor">@color/quick_M4_868A8F</item>
+        <item name="android:textSize">@dimen/quick_T6_12</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!-- popWindow缩放动画 -->
+    <style name="quick_pop_botton_anim_style" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/quick_pop_bottom_scale_in</item>
+        <item name="android:windowExitAnimation">@anim/quick_pop_bottom_scale_out</item>
+    </style>
+
+    <!-- popWindow缩放动画 -->
+    <style name="quick_pop_top_anim_style" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/quick_pop_top_scale_in</item>
+        <item name="android:windowExitAnimation">@anim/quick_pop_top_scale_out</item>
+    </style>
+
+    <!-- popWindow缩放动画 -->
+    <style name="quick_pop_alpha_anim_style" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/quick_pop_top_alpha_in</item>
+        <item name="android:windowExitAnimation">@anim/quick_pop_top_alpha_out</item>
+    </style>
+</resources>

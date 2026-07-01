@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 登录页文本框边框色（浅色模式） -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 聚焦态 → 主色描边 -->
+    <item android:color="?attr/colorPrimary" android:state_focused="true" />
+    <!-- 鼠标悬停 → 主色描边 -->
+    <item android:color="?attr/colorPrimary" android:state_hovered="true" />
+    <!-- 禁用态 → 极低对比度 -->
+    <item android:alpha="0.12" android:color="?attr/colorOnSurface" android:state_enabled="false" />
+    <!-- 默认态 → 对比度 ~4:1 on #FFF，清晰可见 -->
+    <item android:color="@color/quick_textfield_stroke_light" />
+</selector>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- 外圈 - 蓝色环 -->
+    <path
+        android:pathData="M54,36C63.94,36 72,44.06 72,54S63.94,72 54,72 36,63.94 36,54 44.06,36 54,36ZM54,40C46.27,40 40,46.27 40,54S46.27,68 54,68 68,61.73 68,54 61.73,40 54,40Z"
+        android:fillColor="@color/quick_launcher_fg_blue"
+        android:fillAlpha="0.8" />
+
+    <!-- 左侧字母 A 型 -->
+    <path
+        android:pathData="M47,58L50,52L58,52L61,58H64L56,40H52L44,58H47ZM51.5,49.5L54,44L56.5,49.5H51.5Z"
+        android:fillColor="@color/quick_white" />
+
+    <!-- 右侧闪电/快进符号 -->
+    <path
+        android:pathData="M62,46L57,53H60L55,62L64,52H60Z"
+        android:fillColor="@color/quick_launcher_fg_yellow" />
+
+</vector>

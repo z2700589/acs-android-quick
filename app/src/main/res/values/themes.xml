@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        全局默认主题 — 升级为 DayNight 变体，自动响应系统夜间模式
+        供 MainActivity 及所有未显式指定主题的组件使用
+    -->
+    <style name="Theme.QuickSample" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
+
+    <!--
+        MD3 浅色主题（登录页专用）
+        完整使用 Material 3 色彩角色体系
+    -->
+    <style name="Theme.Login" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/quick_S5_247BFF</item>
+        <item name="colorOnPrimary">@color/quick_M10_FFFFFF</item>
+        <item name="colorPrimaryContainer">@color/quick_S1_EBF6FF</item>
+        <item name="colorOnPrimaryContainer">@color/quick_S8_002A8C</item>
+
+        <item name="colorSecondary">@color/quick_S4_3D94FF</item>
+        <item name="colorOnSecondary">@color/quick_M10_FFFFFF</item>
+        <item name="colorSecondaryContainer">@color/quick_S1_EBF6FF</item>
+        <item name="colorOnSecondaryContainer">@color/quick_S8_002A8C</item>
+
+        <item name="colorTertiary">@color/quick_purple5_6B61FF</item>
+        <item name="colorOnTertiary">@color/quick_M10_FFFFFF</item>
+        <item name="colorTertiaryContainer">@color/quick_purple1_EDEEFF</item>
+        <item name="colorOnTertiaryContainer">@color/quick_purple5_6B61FF</item>
+
+        <item name="colorError">@color/quick_red5_E34950</item>
+        <item name="colorOnError">@color/quick_M10_FFFFFF</item>
+        <item name="colorErrorContainer">@color/quick_red1_FFE7E6</item>
+        <item name="colorOnErrorContainer">@color/quick_red6_D13B45</item>
+
+        <item name="colorSurface">@color/quick_M10_FFFFFF</item>
+        <item name="colorOnSurface">@color/quick_M1_1D2126</item>
+        <item name="colorSurfaceVariant">@color/quick_M8_F0F2F5</item>
+        <item name="colorOnSurfaceVariant">@color/quick_M3_5E6166</item>
+
+        <item name="colorOutline">@color/quick_M5_B0B3B8</item>
+        <item name="colorOutlineVariant">@color/quick_M7_E6E8EB</item>
+
+        <item name="android:colorBackground">@color/quick_M10_FFFFFF</item>
+        <item name="colorOnBackground">@color/quick_M1_1D2126</item>
+
+        <item name="android:windowBackground">@color/quick_M10_FFFFFF</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+</resources>

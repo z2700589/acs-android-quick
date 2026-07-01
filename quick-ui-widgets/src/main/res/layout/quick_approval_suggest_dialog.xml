@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@drawable/quick_background_m10_top_right_12r"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_top"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/quick_Sp1_4"
+        android:layout_weight="1"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@+id/tv_ui_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/quick_Sp16_60"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_ui_close"
+                android:layout_width="@dimen/quick_Sp11_40"
+                android:layout_height="@dimen/quick_Sp11_40"
+                android:layout_marginStart="@dimen/quick_Sp3_10"
+                android:padding="@dimen/quick_Sp3_10"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@mipmap/res_icon_close" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_ui_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="审批意见"
+                android:textColor="@color/quick_M1_1D2126"
+                android:textSize="@dimen/quick_T3_18"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_ui_tips"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/quick_Sp4_12"
+            android:background="@color/quick_orange1_FFF6D9"
+            android:paddingHorizontal="@dimen/quick_Sp5_16"
+            android:paddingVertical="@dimen/quick_Sp2_8"
+            app:layout_constraintBottom_toTopOf="@+id/edit_ui_message"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_title">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_iu_tips"
+                android:layout_width="@dimen/quick_Sp5_16"
+                android:layout_height="@dimen/quick_Sp5_16"
+                android:layout_marginTop="2dp"
+                app:layout_constraintEnd_toStartOf="@+id/tv_ui_tips"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_ui_tips"
+                app:srcCompat="@mipmap/res_icon_warn" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_ui_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/quick_Sp1_4"
+                android:textColor="@color/quick_orange5_F79D00"
+                android:textSize="@dimen/quick_T5_14"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_iu_tips"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="请填写审批意见请填写审批意见请填写审批意见请填写审批意见请填写审批意见（必填）" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edit_ui_message"
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:background="@color/quick_M10_FFFFFF"
+            android:gravity="start"
+            android:hint="请填写审批意见（必填）"
+            android:lineSpacingExtra="@dimen/quick_Sp2_8"
+            android:lines="5"
+            android:paddingHorizontal="@dimen/quick_Sp5_16"
+            android:textColor="@color/quick_M1_1D2126"
+            android:textColorHint="@color/quick_M5_B0B3B8"
+            android:textSize="@dimen/quick_T4_16"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toTopOf="@+id/tv_ui_limit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_ui_tips" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_ui_limit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/quick_Sp1_4"
+            android:layout_marginBottom="@dimen/quick_Sp5_16"
+            android:gravity="end"
+            android:paddingHorizontal="@dimen/quick_Sp5_16"
+            android:text="0/200"
+            android:textColor="@color/quick_M5_B0B3B8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/view_ui_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/quick_M8_F0F2F5" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_ui_push"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/quick_Sp5_16"
+        android:layout_marginTop="@dimen/quick_Sp2_8">
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/cb_ui_push"
+            android:layout_width="@dimen/quick_Sp5_16"
+            android:layout_height="@dimen/quick_Sp5_16"
+            android:background="@drawable/quick_check_box_style"
+            android:button="@null"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_ui_push"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_ui_push" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_ui_push"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/quick_Sp3_10"
+            android:textColor="@color/quick_M4_868A8F"
+            android:textSize="@dimen/quick_T5_14"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cb_ui_push"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="同时推送名片权限" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.acs.quick.widgets.button.TisStyleButton
+        android:id="@+id/btn_ui_submit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/quick_Sp12_44"
+        android:layout_marginHorizontal="@dimen/quick_Sp5_16"
+        android:layout_marginTop="@dimen/quick_Sp2_8"
+        android:layout_marginBottom="@dimen/quick_Sp5_16"
+        android:text="确认同意"
+        app:quick_btnStyle="primary" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

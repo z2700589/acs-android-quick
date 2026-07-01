@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@drawable/quick_background_m10_top_right_12r"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_top"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@+id/tv_ui_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_sub_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/quick_background_s1_top_right_12r"
+            android:paddingHorizontal="@dimen/quick_Sp5_16"
+            android:paddingVertical="@dimen/quick_Sp2_8"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/rv_ui_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_ui_icon"
+                android:layout_width="@dimen/quick_Sp5_16"
+                android:layout_height="@dimen/quick_Sp5_16"
+                android:layout_marginTop="2dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/res_icon_info"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toStartOf="@+id/tv_ui_info"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_ui_info" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_ui_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/quick_Sp1_4"
+                android:textColor="@color/quick_function_info"
+                android:textSize="@dimen/quick_T5_14"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_ui_icon"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Message" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_ui_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/quick_Sp1_4"
+            android:gravity="center_horizontal"
+            android:maxLines="2"
+            android:paddingHorizontal="@dimen/quick_Sp6_20"
+            android:paddingTop="@dimen/quick_Sp5_16"
+            android:paddingBottom="@dimen/quick_Sp5_16"
+            android:textColor="@color/quick_M4_868A8F"
+            android:textSize="@dimen/quick_T5_14"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/rv_ui_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Message"
+            tools:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_ui_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_sub_title"
+            app:layout_goneMarginTop="@dimen/quick_Sp2_8"
+            tools:itemCount="3"
+            tools:listitem="@layout/quick_item_dialog_button" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/tv_ui_view"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@color/quick_M9_F5F7FA"
+        app:layout_constraintBottom_toTopOf="@+id/tv_ui_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_ui_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/quick_Sp15_56"
+        android:background="@drawable/quick_transparent_selector"
+        android:focusable="true"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/quick_Sp5_16"
+        android:singleLine="true"
+        android:textColor="@color/quick_M4_868A8F"
+        android:textSize="@dimen/quick_T4_16"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="取消"
+        tools:visibility="visible" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

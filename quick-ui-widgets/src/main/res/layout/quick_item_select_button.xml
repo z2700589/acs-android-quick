@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.acs.quick.widgets.dialog.models.TisCheckModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/quick_transparent_selector"
+        android:paddingHorizontal="@dimen/quick_Sp6_20"
+        android:paddingVertical="@dimen/quick_Sp5_16">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_ui_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/quick_Sp2_8"
+            android:ellipsize="end"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:lineSpacingExtra="@dimen/quick_Sp1_4"
+            android:maxLines="2"
+            android:text="@{item.name}"
+            android:textColor="@{item.checked ? @color/quick_function_info : @color/quick_M1_1D2126}"
+            android:textSize="@dimen/quick_T4_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/iv_ui_checked"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="操作操作操作"
+            tools:visibility="visible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_ui_checked"
+            android:layout_width="@dimen/quick_Sp6_20"
+            android:layout_height="@dimen/quick_Sp6_20"
+            android:visibility="@{item.checked ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/res_icon_tick"
+            tools:visibility="invisible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

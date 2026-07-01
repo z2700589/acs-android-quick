@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        夜间模式组件样式覆盖
+        将 Light 父主题切换为深色变体，
+        颜色资源因名称不变自动选用 values-night 值。
+    -->
+
+    <!-- 基础对话框主题（夜间版） -->
+    <style name="quick_BaseDialogTheme" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 夜间模式遮罩更深的 dim -->
+        <item name="android:backgroundDimAmount">0.6</item>
+    </style>
+
+    <!-- 动画样式无需修改 -->
+</resources>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Font-字体-->
+    <dimen name="quick_T1_28">28sp</dimen>
+    <dimen name="quick_T2_24">24sp</dimen>
+    <dimen name="quick_T3_18">18sp</dimen>
+    <dimen name="quick_T4_16">16sp</dimen>
+    <dimen name="quick_T5_14">14sp</dimen>
+    <dimen name="quick_T6_12">12sp</dimen>
+    <dimen name="quick_T7_10">10sp</dimen>
+
+
+    <!--Radius-圆角-->
+    <dimen name="quick_Ra1_2">2dp</dimen>
+    <dimen name="quick_Ra2_4">4dp</dimen>
+    <dimen name="quick_Ra3_8">8dp</dimen>
+    <dimen name="quick_Ra4_12">12dp</dimen>
+    <dimen name="quick_Ra5_16">16dp</dimen>
+    <dimen name="quick_Ra4_Round">360dp</dimen>
+
+    <!--Space-间距-->
+    <dimen name="quick_Sp0_0">0dp</dimen>
+    <dimen name="quick_Sp1_4">4dp</dimen>
+    <dimen name="quick_Sp2_8">8dp</dimen>
+    <dimen name="quick_Sp3_10">10dp</dimen>
+    <dimen name="quick_Sp4_12">12dp</dimen>
+    <!--    <dimen name="quick_Sp4_14">14dp</dimen>-->
+    <dimen name="quick_Sp5_16">16dp</dimen>
+    <!--    <dimen name="quick_Sp5_18">18dp</dimen>-->
+    <dimen name="quick_Sp6_20">20dp</dimen>
+    <dimen name="quick_Sp7_24">24dp</dimen>
+    <dimen name="quick_Sp8_28">28dp</dimen>
+    <dimen name="quick_Sp9_32">32dp</dimen>
+    <dimen name="quick_Sp10_36">36dp</dimen>
+    <dimen name="quick_Sp11_40">40dp</dimen>
+    <dimen name="quick_Sp12_44">44dp</dimen>
+    <dimen name="quick_Sp13_48">48dp</dimen>
+    <dimen name="quick_Sp14_52">52dp</dimen>
+    <dimen name="quick_Sp15_56">56dp</dimen>
+    <dimen name="quick_Sp16_60">60dp</dimen>
+
+    <!--customer-->
+    <dimen name="quick_Sp_100">100dp</dimen>
+    <dimen name="quick_Sp_18">18dp</dimen>
+    <dimen name="quick_Sp_14">14dp</dimen>
+    <dimen name="quick_Sp_22">22dp</dimen>
+
+</resources>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/quick_Sp15_56"
+        android:background="@drawable/quick_transparent_selector">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_ui_icon"
+            android:layout_width="@dimen/quick_Sp6_20"
+            android:layout_height="@dimen/quick_Sp6_20"
+            android:layout_marginStart="@dimen/quick_Sp5_16"
+            android:layout_marginEnd="@dimen/quick_Sp2_8"
+            android:visibility="gone"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_ui_button"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/res_icon_baidu"
+            tools:visibility="visible" />
+
+        <com.acs.quick.widgets.button.TisStyleButton
+            android:id="@+id/tv_ui_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/quick_Sp5_16"
+            android:gravity="center"
+            android:minWidth="@dimen/quick_Sp16_60"
+            android:textColor="@color/quick_M1_1D2126"
+            android:textSize="@dimen/quick_T4_16"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_ui_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_goneMarginStart="@dimen/quick_Sp5_16"
+            app:quick_btnStyle="normal"
+            tools:text="确定"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

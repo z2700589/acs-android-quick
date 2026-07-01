@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Logo 圆形容器 — 白色背景 + 圆角 + 阴影 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 阴影层 -->
+    <item
+        android:left="2dp"
+        android:top="2dp"
+        android:right="2dp"
+        android:bottom="4dp">
+        <shape android:shape="oval">
+            <solid android:color="@color/quick_black_12alpha" />
+        </shape>
+    </item>
+    <!-- 主体白色圆 -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/quick_M10_FFFFFF" />
+        </shape>
+    </item>
+</layer-list>

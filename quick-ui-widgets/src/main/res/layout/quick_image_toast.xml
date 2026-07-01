@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/quick_bg_toast_shape_corners_5"
+        android:minWidth="128dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/quick_Sp6_20"
+        android:paddingVertical="@dimen/quick_Sp7_24">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image"
+            android:layout_width="@dimen/quick_Sp11_40"
+            android:layout_height="@dimen/quick_Sp11_40"
+            android:layout_gravity="center_horizontal|top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@mipmap/quick_ic_image_toast_failed" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/quick_Sp2_8"
+            android:breakStrategy="simple"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="3"
+            android:textColor="@color/quick_M10_FFFFFF"
+            android:textSize="@dimen/quick_T4_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image"
+            tools:text="谷川信息系统谷川信息系统谷川信息系统谷川信息系统" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

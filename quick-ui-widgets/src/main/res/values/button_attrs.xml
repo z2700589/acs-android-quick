@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TisSuperButton">
+        <!-- 按钮圆角, 注意：如果设置了btnRadius 再设置单个角，是不生效的！-->
+        <attr name="quick_btnRadius" format="dimension" />
+        <attr name="quick_btnLeftTopRadius" format="dimension" />
+        <attr name="quick_btnLeftBottomRadius" format="dimension" />
+        <attr name="quick_btnRightTopRadius" format="dimension" />
+        <attr name="quick_btnRightBottomRadius" format="dimension" />
+        <!--颜色：正常颜色，色，禁用颜色-->
+        <attr name="quick_btnNormalColor" format="color" />
+        <attr name="quick_btnPressedColor" format="color" />
+        <attr name="quick_btnDisableColor" format="color" />
+        <!-- 边框 -->
+        <attr name="quick_btnStrokeWidth" format="dimension" />
+        <attr name="quick_btnStrokeColor" format="color" />
+        <!--左侧图片-->
+        <attr name="quick_drawable" format="reference" />
+        <attr name="quick_drawablePadding" format="dimension" />
+        <attr name="quick_enableShadow" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="TisStyleButton">
+        <!--    按钮类型    -->
+        <attr name="quick_btnStyle" format="enum">
+            <!-- 主要按钮 -->
+            <enum name="primary" value="1" />
+            <!-- 次要按钮 -->
+            <enum name="secondary" value="2" />
+            <!-- 危险按钮 -->
+            <enum name="danger" value="3" />
+            <!-- 幽灵按钮 -->
+            <enum name="ghost" value="4" />
+            <!--文字按钮-->
+            <enum name="normal" value="5" />
+            <!--拒绝按钮-->
+            <enum name="refuse" value="6" />
+        </attr>
+        <!--   按钮大小     -->
+        <attr name="quick_btnSize" format="enum">
+            <!-- 小 -->
+            <enum name="small" value="1" />
+            <!-- 中 -->
+            <enum name="middle" value="2" />
+            <!-- 大 -->
+            <enum name="large" value="3" />
+        </attr>
+    </declare-styleable>
+</resources>
