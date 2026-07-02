@@ -216,7 +216,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_form_subtitle"
                     app:prefixText="@string/login_phone_prefix"
                     app:prefixTextColor="?attr/colorOnSurfaceVariant"
-                    app:prefixTextAppearance="?attr/textAppearanceBodyMedium">
+                    app:prefixTextAppearance="@style/quick_textinput_prefix">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_phone"

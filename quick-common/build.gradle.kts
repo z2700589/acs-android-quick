@@ -105,6 +105,9 @@ dependencies {
     api(libs.kotlinx.coroutines.core)
     api(libs.kotlinx.coroutines.android)
 
+    // WindowManager（折叠屏适配）
+    api(libs.window)
+
     // UI Utils
     api(libs.glide)
     ksp(libs.glide.compiler)

@@ -18,12 +18,15 @@
 package com.acs.quick.sample.main
 
 import androidx.activity.viewModels
+import com.acs.quick.common.config.RouteUrl
 import com.acs.quick.common.ui.activity.BaseActivity
 import com.acs.quick.sample.R
 import com.acs.quick.sample.databinding.ActivityMainBinding
+import com.therouter.router.Route
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
+@Route(path = RouteUrl.Main.PAGE_MAIN_ACTIVITY)
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     override val mViewModel: MainViewModel by viewModels()

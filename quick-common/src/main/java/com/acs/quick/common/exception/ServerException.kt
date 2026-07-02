@@ -18,4 +18,4 @@
 package com.acs.quick.common.exception
 
 /** 服务端业务异常，携带 code + 错误信息 */
-class ServerException(var code: String? = "", var msg: String? = "") : RuntimeException(msg)
+class ServerException(var code: String? = "", msg: String? = "") : RuntimeException(msg)

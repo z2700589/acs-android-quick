@@ -18,11 +18,9 @@
 package com.acs.quick.common.ui.activity
 
 import android.content.pm.ActivityInfo
-import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
 import android.os.IBinder
-import android.os.Looper
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -40,6 +38,8 @@ import com.acs.quick.common.data.callback.onAuthExpired
 import com.acs.quick.common.data.dataStore.CommonPreferencesDataStore
 import com.acs.quick.common.data.state.UIState
 import com.acs.quick.common.ui.SystemBarHelper
+import com.acs.quick.common.ui.foldable.FoldableHelper
+import com.acs.quick.common.ui.foldable.FoldableState
 import com.acs.quick.common.ui.viewmodel.BaseViewModel
 import com.acs.quick.common.utils.SpUtil
 import com.acs.quick.widgets.dialog.dialog.QuickLoadingDialog
@@ -81,6 +81,21 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
 
     /** 消费底部 insets（含 IME），仅在 [consumeWindowInsets]=true 时生效 */
     protected open val consumeBottomInsets: Boolean = true
+
+    // ---- 折叠屏 ----
+
+    /**
+     * 子类可通过覆盖此方法启用折叠屏状态监听。
+     *
+     * 默认关闭。子类如需监听，覆写此属性并返回一个新的 [FoldableHelper] 实例：
+     * ```
+     * override val foldableHelper: FoldableHelper
+     *     get() = FoldableHelper(FoldableConfig(hingeSafeMarginDp = 12f))
+     * ```
+     *
+     * 监听结果通过 [onFoldableStateChanged] 回调。
+     */
+    protected open val foldableHelper: FoldableHelper? = null
 
     // ---- 生命周期 ----
 
@@ -141,7 +156,36 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
                 }
             }
         }
+
+        // 折叠屏状态监听
+        applyFoldableIfNeeded()
     }
+
+    /** 启动折叠屏监听（由 [foldableHelper] 控制开关） */
+    private fun applyFoldableIfNeeded() {
+        foldableHelper?.setup(this) { state ->
+            onFoldableStateChanged(state)
+        }
+    }
+
+    /**
+     * 折叠屏状态变化时回调。
+     *
+     * 默认空实现。子类覆写此方法处理折叠状态：
+     * ```
+     * override fun onFoldableStateChanged(state: FoldableState) {
+     *     when (state) {
+     *         is FoldableState.Flat -> adaptLargeScreen()
+     *         is FoldableState.HalfOpened -> adaptSplitScreen(state)
+         *         is FoldableState.Folded -> adaptCompact()
+     *         is FoldableState.None -> {}
+     *     }
+     * }
+     * ```
+     *
+     * @param state  当前折叠状态
+     */
+    protected open fun onFoldableStateChanged(state: FoldableState) {}
 
     /** 应用沉浸式系统栏，在 [initView] 之前调用 */
     private fun applySystemBars() {
@@ -173,6 +217,16 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
     abstract fun initData()
 
     abstract fun initListener()
+
+    // ---- Foldable ----
+
+    /**
+     * 同步获取当前折叠状态。
+     * 仅当 [foldableHelper] 不为 null 时有效，否则返回 [FoldableState.None]。
+     */
+    protected fun currentFoldableState(): FoldableState {
+        return foldableHelper?.currentState() ?: FoldableState.None
+    }
 
     // ---- Loading ----
 

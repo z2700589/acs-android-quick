@@ -51,6 +51,18 @@
         <item name="android:ellipsize">end</item>
     </style>
 
+    <!--
+      TextInputLayout 前缀/后缀文字样式
+      解决 prefixText 默认走 textAppearanceLabelSmall（固定 11sp），
+      不会跟随 quick_T5_14 在 sw600dp/sw720dp 缩放的问题。
+      使用引用型 @dimen/quick_T5_14，让各档配置自动放大。
+    -->
+    <style name="quick_textinput_prefix" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textSize">@dimen/quick_T5_14</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
     <!-- popWindow缩放动画 -->
     <style name="quick_pop_botton_anim_style" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/quick_pop_bottom_scale_in</item>

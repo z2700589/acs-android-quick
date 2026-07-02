@@ -59,7 +59,7 @@ fun <T> BaseResponse<T>.processData(): NetworkResult<T> {
 fun <T> BaseResponse<T>.processMessage(): NetworkResult<String> {
     return try {
         if (code == "200") {
-            NetworkResult.Success(message ?: msg ?: "成功")
+            NetworkResult.Success(message ?: msg ?: "操作成功")
         } else {
             NetworkResult.Failure(extractFailure())
         }

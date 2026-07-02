@@ -25,15 +25,15 @@ object RouteUrl {
     // Main
     object Main {
         const val GROUP_MAIN = "/main"
-        const val PAGE_SPLASH_ACTIVITY = "\${GROUP_MAIN}/SplashActivity"
-        const val PAGE_LOGIN_ACTIVITY = "\${GROUP_MAIN}/LoginActivity"
-        const val PAGE_MAIN_ACTIVITY = "\${GROUP_MAIN}/MainActivity"
+        const val PAGE_SPLASH_ACTIVITY = "/${GROUP_MAIN}/SplashActivity"
+        const val PAGE_LOGIN_ACTIVITY = "/${GROUP_MAIN}/LoginActivity"
+        const val PAGE_MAIN_ACTIVITY = "/${GROUP_MAIN}/MainActivity"
     }
 
     // Home
     object Home {
         const val GROUP_HOME = "/home"
-        const val PAGE_HOME_FRAGMENT = "\${GROUP_HOME}/HomeFragment"
+        const val PAGE_HOME_FRAGMENT = "/${GROUP_HOME}/HomeFragment"
     }
 
     // Office

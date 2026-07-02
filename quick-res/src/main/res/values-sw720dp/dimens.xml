@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  values-sw720dp — 最小宽度 720dp（10寸+ 大平板横屏 / 折叠屏大屏展开）
+  在基准值基础上 +35~45% 放大系数
+  ══════════════════════════════════════════════════════════════════════════
+  适用设备示例：
+    - iPad Pro 11" 横屏（~834dp）
+    - iPad Pro 12.9" 竖屏（~980dp）
+    - 小米平板 5 Pro 横屏（~800dp）
+    - 三星 Galaxy Z Fold 5 展开态（~720-900dp）
+    - Surface Pro 系列
+  ══════════════════════════════════════════════════════════════════════════
+-->
+<resources>
+
+    <!--Font-字体（+40%）-->
+    <dimen name="quick_T1_28">40sp</dimen>
+    <dimen name="quick_T2_24">34sp</dimen>
+    <dimen name="quick_T3_18">25sp</dimen>
+    <dimen name="quick_T4_16">22sp</dimen>
+    <dimen name="quick_T5_14">20sp</dimen>
+    <dimen name="quick_T6_12">17sp</dimen>
+    <dimen name="quick_T7_10">14sp</dimen>
+
+    <!--Radius-圆角（+40%）-->
+    <dimen name="quick_Ra1_2">3dp</dimen>
+    <dimen name="quick_Ra2_4">6dp</dimen>
+    <dimen name="quick_Ra3_8">11dp</dimen>
+    <dimen name="quick_Ra4_12">17dp</dimen>
+    <dimen name="quick_Ra5_16">22dp</dimen>
+    <dimen name="quick_Ra4_Round">360dp</dimen>
+
+    <!--Space-间距（+40%）-->
+    <dimen name="quick_Sp0_0">0dp</dimen>
+    <dimen name="quick_Sp1_4">6dp</dimen>
+    <dimen name="quick_Sp2_8">11dp</dimen>
+    <dimen name="quick_Sp3_10">14dp</dimen>
+    <dimen name="quick_Sp4_12">17dp</dimen>
+    <dimen name="quick_Sp5_16">22dp</dimen>
+    <dimen name="quick_Sp6_20">28dp</dimen>
+    <dimen name="quick_Sp7_24">34dp</dimen>
+    <dimen name="quick_Sp8_28">39dp</dimen>
+    <dimen name="quick_Sp9_32">45dp</dimen>
+    <dimen name="quick_Sp10_36">50dp</dimen>
+    <dimen name="quick_Sp11_40">56dp</dimen>
+    <dimen name="quick_Sp12_44">62dp</dimen>
+    <dimen name="quick_Sp13_48">67dp</dimen>
+    <dimen name="quick_Sp14_52">73dp</dimen>
+    <dimen name="quick_Sp15_56">78dp</dimen>
+    <dimen name="quick_Sp16_60">84dp</dimen>
+    <dimen name="quick_Sp80_400">520dp</dimen>
+
+    <!--customer-->
+    <dimen name="quick_Sp_100">140dp</dimen>
+    <dimen name="quick_Sp_18">25dp</dimen>
+    <dimen name="quick_Sp_14">20dp</dimen>
+    <dimen name="quick_Sp_22">31dp</dimen>
+
+</resources>

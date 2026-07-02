@@ -157,6 +157,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_form_subtitle"
                     app:prefixText="@string/login_phone_prefix"
+                    app:prefixTextAppearance="@style/quick_textinput_prefix"
                     app:prefixTextColor="?attr/colorOnSurfaceVariant">
 
                     <com.google.android.material.textfield.TextInputEditText
