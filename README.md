@@ -1,6 +1,6 @@
 # ACS Android Quick Framework
 
-> **企业级 Android 快速开发框架** — 面向多微服务 BFF 架构的移动端基础设施，以模块化 + MVVM + Kotlin Flow 为核心，提供开箱即用的基类体系、UI 组件库与网络层方案。
+> **企业级 Android 快速开发框架** — 面向多微服务 BFF 架构的移动端基础设施，以模块化 + MVVM + Kotlin Flow 为核心，提供开箱即用的基类体系、UI 组件库、网络层方案，以及多形态设备（折叠屏/平板/横屏）完整适配。
 
 ---
 
@@ -13,6 +13,7 @@
 - [接入指南](#接入指南)
 - [项目结构](#项目结构)
 - [核心设计](#核心设计)
+- [多形态设备适配](#多形态设备适配)
 - [性能优化](#性能优化)
 - [工程化实践](#工程化实践)
 - [安全与兼容性](#安全与兼容性)
@@ -30,6 +31,7 @@
 | 每个页面重复编写 Loading / 异常 / 键盘处理 | `BaseActivity` / `BaseViewModel` 模板方法统一收敛 |
 | 嵌套网络请求 Loading 闪烁 | `AtomicInteger` 引用计数，最外层返回后才隐藏 |
 | 组件样式不统一，重复造轮子 | `quick-ui-widgets` 模块提供按钮 / 弹窗 / Toast / Search 全套组件 |
+| 折叠屏 / 平板 / 横屏适配分散 | `FoldableHelper` 全局封装 + 4 档尺寸资源体系 |
 | 团队协作缺乏规范约束 | 统一命名前缀 `quick_`、Gradle Version Catalog、模块单向依赖 |
 
 ---
@@ -50,10 +52,10 @@ Your App ──→ quick-common ──→ quick-res
 
 | 模块 | 命名空间 | 层级 | 核心职责 |
 |------|---------|------|---------|
-| **quick-res** | `com.acs.quick.res` | L0 基础设施 | 12 级中性色 + 6 级品牌色体系、语义化尺寸、Shapeable 样式、3 种分割线装饰器、入场/退场动画 |
+| **quick-res** | `com.acs.quick.res` | L0 基础设施 | 12 级中性色 + 6 级品牌色体系、**4 档语义化尺寸（sw360dp / sw400dp / sw600dp / sw720dp）**、Shapeable 样式、3 种分割线装饰器、入场/退场动画 |
 | **quick-ui-widgets** | `com.acs.quick.widgets` | L1 UI 组件 | 多风格按钮（6 种 + Loading 动画）、Dialog 体系（Dialog/BottomSheet + Builder 模式）、Toast 调度器（工厂 + 同位置去重） |
 | **quick-search** | `com.acs.quick.search` | L1 业务组件 | 单选/多选搜索列表、关键字高亮（SpannableString）、全选/反选、分页加载、缺省页集成 |
-| **quick-common** | `com.acs.quick.common` | L2 聚合中心 | Base 基类体系、网络层（Retrofit + 拦截器链）、Hilt DI、DataBinding 适配器、KTX 扩展、DataStore 持久化、文件下载管理 |
+| **quick-common** | `com.acs.quick.common` | L2 聚合中心 | Base 基类体系（**含折叠屏监听**）、网络层（Retrofit + 拦截器链）、Hilt DI、DataBinding 适配器、KTX 扩展、DataStore 持久化、文件下载管理 |
 
 > **设计原则**：接入方仅需一行 `implementation(project(":quick-common"))` 即可获得全部基础能力，子模块新增功能自动透传，零配置接入。
 
@@ -69,14 +71,14 @@ Your App ──→ quick-common ──→ quick-res
 | **依赖注入** | Hilt + KSP | 2.50 / 1.0.17 |
 | **异步** | Kotlin Coroutines + Flow | 1.7.3 |
 | **网络层** | Retrofit + OkHttp + Moshi | 2.9.0 / 4.12.0 / 1.15.0 |
-| **路由** | TheRouter | 1.2.2 |
+| **路由** | TheRouter | 1.3.2 |
 | **图片加载** | Glide | 4.16.0 |
 | **列表** | BRV (Binding RecyclerView) | 1.6.1 |
-| **屏幕适配** | AndroidAutoSize（今日头条方案） | 1.2.1 |
+| **屏幕适配** | 4 档 `values-*` 资源目录 + swdp 限定符 | — |
+| **折叠屏** | Jetpack WindowManager | 1.2.0 |
 | **持久化** | DataStore Preferences | 1.0.0 |
 | **事件总线** | LiveEventBus | 1.8.0 |
 | **日志** | Timber（DEBUG 自动启用） | 5.0.1 |
-
 | **下拉刷新** | SmartRefreshLayout | 2.1.0 |
 | **缺省页** | StateLayout | 1.3.5 |
 | **多类型列表** | MultiType | 3.4.1 |
@@ -162,10 +164,11 @@ class MyApp : BaseApplication() {
 }
 ```
 
-**Step 2：创建 Activity**
+**Step 2：创建 Activity（跳转必须使用 TheRouter）**
 
 ```kotlin
 @AndroidEntryPoint
+@Route(path = "/main/MainActivity")  // 必须加 @Route 注解
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     override val mViewModel: MainViewModel by viewModels()
@@ -180,7 +183,23 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 }
 ```
 
-**Step 3：创建 ViewModel 与 Repository**
+**Step 3：页面跳转统一走 TheRouter**
+
+```kotlin
+// ❌ 禁止直接 startActivity + Intent
+// startActivity(Intent(this, MainActivity::class.java))
+
+// ✅ 统一使用 TheRouter（支持路由拦截、跨模块跳转）
+TheRouter.build("/main/MainActivity").navigation(this)
+
+// ✅ 传递参数（通过 @Autowired 自动注入）
+TheRouter.build("/main/DetailActivity")
+    .withString("id", userId)
+    .withString("title", "标题")
+    .navigation(this)
+```
+
+**Step 4：创建 ViewModel 与 Repository**
 
 ```kotlin
 @HiltViewModel
@@ -235,10 +254,10 @@ acs-android-quick/
 │   └── src/main/java/com/acs/quick/common/
 │       ├── api/NetService.kt           # Retrofit API 接口定义
 │       ├── app/                        # BaseApplication + ActivityLifecycle
-│       ├── config/                     # UrlConfig / RouteKey / EventConfig / AppConfig
+│       ├── config/                     # UrlConfig / RouteKey / RouteUrl / AppConfig
 │       ├── data/                       # 数据层
 │       │   ├── bean/User.kt            # 数据模型
-│       │   ├── callback/NetCallBack.kt # NetworkResult sealed class
+│       │   ├── callback/NetCallBack.kt # NetworkResult sealed class + onAuthExpired
 │       │   ├── dataStore/              # CommonPreferencesDataStore
 │       │   ├── download/DownloadState.kt
 │       │   ├── repository/BaseRepository.kt
@@ -257,6 +276,8 @@ acs-android-quick/
 │       ├── ui/                         # 基类体系
 │       │   ├── SystemBarHelper.kt      # 边缘渲染辅助
 │       │   ├── activity/BaseActivity.kt
+│       │   ├── foldable/
+│       │   │   └── FoldableHelper.kt   # 折叠屏全局监听封装（新增）
 │       │   ├── fragment/BaseFragment.kt
 │       │   └── viewmodel/BaseViewModel.kt
 │       └── utils/                      # 工具类（Stack / SP / Network）
@@ -275,10 +296,14 @@ acs-android-quick/
 │           ├── drawable/               # 40+ 背景 Shape / 选择器 / 图标
 │           ├── values/
 │           │   ├── colors.xml          # 色彩体系（中性色 12 级 + 品牌色 6 级）
-│           │   ├── dimens.xml          # 语义化尺寸
-│           │   ├── styles.xml          # 全局样式
+│           │   ├── dimens.xml          # 基准语义化尺寸（360dp）
+│           │   ├── styles.xml          # 全局样式（含 quick_textinput_prefix）
 │           │   └── button_colors.xml   # 按钮颜色预设
-│           └── values-night/           # 深色模式适配
+│           ├── values-sw360dp/        # 小屏手机适配（4.0"~4.7"）
+│           ├── values-sw400dp/        # 大屏手机适配（4.7"~6.0"）
+│           ├── values-sw600dp/        # 平板/折叠屏展开适配（7"~12"）
+│           ├── values-sw720dp/        # 大平板适配（10"+）
+│           └── values-night/          # 深色模式适配
 │
 ├── quick-ui-widgets/                    # 🧰 UI 组件库
 │   ├── build.gradle.kts
@@ -322,7 +347,8 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
 - **Loading 自动订阅**：`repeatOnLifecycle(STARTED)` 自动收集 `ViewModel.isLoading` StateFlow
 - **键盘智能隐藏**：`dispatchTouchEvent` 点击 EditText 外部自动收起输入法
 - **Edge-to-Edge**：`SystemBarHelper` 实现边到边渲染，支持状态栏遮罩、insets 独立控制
-- **鉴权过期**：通过 `onAuthExpired` 函数引用统一处理 401
+- **401 鉴权过期**：`onAuthExpired` 全局回调，子类可覆写处理登录失效逻辑
+- **折叠屏监听**：通过 `foldableHelper` 属性 + `onFoldableStateChanged` 回调钩子接入
 
 #### BaseFragment — 延迟加载与可见性感知
 
@@ -379,7 +405,33 @@ Retrofit API 定义 Header("URL_TYPE")
 
 ---
 
-### 三、UI 组件库设计
+### 三、页面跳转 — TheRouter 路由
+
+所有页面跳转**强制使用 TheRouter**，禁止直接 `startActivity(Intent(...))`：
+
+```kotlin
+// ✅ 正确：使用 @Route 注解 + TheRouter 跳转
+@Route(path = "/main/LoginActivity")
+class LoginActivity : BaseActivity<...>() { ... }
+
+// 跳转时
+TheRouter.build("/main/MainActivity").navigation(this)
+
+// 带参数
+TheRouter.build("/main/DetailActivity")
+    .withString("id", userId)
+    .navigation(this)
+```
+
+- **@Route 注解**：每个 Activity 必须标注路由路径，用于编译期生成路由表
+- **全局路由常量**：统一在 `RouteUrl.kt` 中管理，防止硬编码路径散落
+- **支持参数注入**：`@Autowired` 字段自动接收路由参数，无需手动解析 Intent
+
+> ⚠️ **路由常量写法注意**：Kotlin `const val` 不支持字符串模板（如 `"\${VAR}/path"`）和 `+` 拼接。直接写完整路径字符串，或使用普通 `val` + `+` 拼接。
+
+---
+
+### 四、UI 组件库设计
 
 #### 按钮系统 — 六种风格 + Loading 动画
 
@@ -417,7 +469,7 @@ ToastScheduler → 同位置 | 同别名 → 更新内容；不同 → 替换
 
 ---
 
-### 四、QuickSearchList — 高度封装的搜索选择组件
+### 五、QuickSearchList — 高度封装的搜索选择组件
 
 通过**纯 XML 自定义属性**即可配置的搜索选择列表：
 
@@ -428,6 +480,87 @@ ToastScheduler → 同位置 | 同别名 → 更新内容；不同 → 替换
 - 上拉加载更多（SmartRefreshLayout）+ 下拉刷新 + 缺省页（StateLayout）
 - 水平/垂直两种布局样式（`orientation`）
 - 完全解耦数据源，通过 `submitList` / `submitSelected` 驱动
+
+---
+
+## 多形态设备适配
+
+### 一、4 档尺寸资源体系
+
+通过 `values-*` 限定符目录，实现按屏幕宽度自动切换尺寸：
+
+| 资源目录 | 适用设备 | 基准宽度 | 字号缩放 | 间距缩放 | 圆角缩放 |
+|---------|---------|---------|---------|---------|---------|
+| `values/` (基准) | 360dp 手机 | 360dp | 1.0× | 1.0× | 1.0× |
+| `values-sw360dp/` | 小屏手机（4.0"~4.7"） | < 360dp | 0.93× | 0.93× | 0.5× |
+| `values-sw400dp/` | 大屏手机（4.7"~6.0"） | 400dp | 1.0× | 1.0× | 1.0× |
+| `values-sw600dp/` | 平板/折叠屏展开（7"~12"） | 600dp | **+21%** | **+25%** | **+25%** |
+| `values-sw720dp/` | 大平板（10"+） | 720dp | **+40%** | **+40%** | **+38%** |
+
+**尺寸命名规范**：`quick_T{N}_{sp值}` / `quick_Sp{N}_{dp值}` / `quick_Ra{N}_{dp值}`
+- T = 字体（Text），Sp1~7 = 7 级字阶（28sp → 10sp）
+- Sp = 间距（Space），Sp0~16 = 16 级间距（0dp → 60dp）
+- Ra = 圆角（Radius），Ra1~5 = 5 级圆角（2dp → 16dp）
+
+**覆盖原则**：只有需要缩放的尺寸才在 sw 目录中覆盖；不需要缩放的通用尺寸（如 `0dp`）可省略。
+
+### 二、布局目录适配
+
+| 布局目录 | 触发条件 | 典型场景 |
+|---------|---------|---------|
+| `layout/` | 默认 | 手机竖屏 |
+| `layout-land/` | 横屏 | 手机横屏（视频/游戏） |
+| `layout-sw600dp/` | 最窄可用宽度 ≥ 600dp | 平板竖屏 / 折叠屏展开态 |
+
+> ⚠️ **主题属性 vs 样式资源**：布局中引用 `?attr/textAppearanceBodyMedium` 等主题属性时，不会跟随 `values-sw*/dimens.xml` 缩放；应使用 `@style/...` 引用自定义样式，样式内部再引用 `@dimen/...`，这样才能被多档尺寸资源覆盖。
+
+### 三、折叠屏监听 — FoldableHelper
+
+基于 **Jetpack WindowManager** 封装的全局折叠屏状态监听：
+
+```kotlin
+// FoldableState — 折叠屏设备状态（sealed class）
+sealed class FoldableState {
+    data object None              // 非折叠设备
+    data class Flat(...)          // 完全展开（视为大屏）
+    data class HalfOpened(...)     // 半折叠（平行视窗 / 帐篷 / 支架模式）
+    data class Folded(...)        // 折叠合起（使用外屏）
+}
+
+// 方式 1：Callback 风格（推荐，最简用法）
+override fun initView() {
+    setupFoldable { state ->
+        when (state) {
+            is FoldableState.Flat ->       adaptLargeScreen()
+            is FoldableState.HalfOpened -> adaptSplitScreen(state)
+            is FoldableState.Folded ->     adaptCompact()
+            is FoldableState.None -> {}
+        }
+    }
+}
+
+// 方式 2：Flow 风格（适合 ViewModel 层）
+lifecycleScope.launch {
+    repeatOnLifecycle(Lifecycle.State.STARTED) {
+        foldableState().collect { state -> ... }
+    }
+}
+
+// 方式 3：子类覆写 BaseActivity 钩子（完全自定义）
+override fun onFoldableStateChanged(state: FoldableState) {
+    // 完全自定义折叠态 UI 适配逻辑
+}
+```
+
+**铰链避让**：当设备为 `HalfOpened` 态时，可通过 `state.hingeBounds` 获取铰链区域 Rect，动态调整内容区域的 Guideline / padding，避免内容被铰链遮挡。
+
+**启用方式**：在子类中覆写 `foldableHelper` 属性：
+
+```kotlin
+// MainActivity 示例
+override val foldableHelper: FoldableHelper
+    get() = FoldableHelper(FoldableConfig(hingeSafeMarginDp = 12f))
+```
 
 ---
 
@@ -462,13 +595,15 @@ ToastScheduler → 同位置 | 同别名 → 更新内容；不同 → 替换
 | 资源前缀 | `quick_` | `quick_btnStyle`, `quick_color_S5_247BFF` |
 | 模块命名 | `quick-*` | `quick-common`, `quick-ui-widgets` |
 | 颜色命名 | 语义化：`{体系}_{色阶}_{色值}` | `quick_S5_247BFF`（系统色 5 阶 #247BFF） |
-| 注释规范 | KDoc + `@author` + `@Description` + `@Date` + `@LastModified` | 全量代码覆盖 |
+| 尺寸命名 | `quick_T{级}_{sp值}` / `quick_Sp{级}_{dp值}` | `quick_T1_28`（28sp标题）/ `quick_Sp7_24`（24dp边距） |
+| 注释规范 | KDoc + `@author` + `@Description` | 全量代码覆盖 |
 
 ### 代码组织
 
 - `ktx/` 目录：Kotlin 扩展函数集中管理（尺寸换算 / Flow 订阅 / Intent 序列化 / ViewPager2）
 - `databinding/` 目录：BindingAdapter 集中管理（图片加载 / 阴影 / 时间格式化 / 防快速点击）
 - `config/` 目录：常量集中管理（URL / 路由 / 事件 Key / SP Key）
+- `ui/foldable/` 目录：折叠屏监听封装（FoldableHelper / FoldableState）
 
 ### 注解处理器策略
 
@@ -483,6 +618,7 @@ ToastScheduler → 同位置 | 同别名 → 更新内容；不同 → 替换
 - SSL 证书信任策略封装为独立拦截器，企业内网环境可配置
 - `@SuppressLint` 标注明确：`StaticFieldLeak`（Application Context）、`SetTextI18n`、`TrustAllX509TrustManager`
 - `@JvmStatic` / `@JvmOverloads` 确保 Java 调用友好（混合项目兼容）
+- 折叠屏适配依赖 Jetpack WindowManager，支持 Android 10+（API 29）折叠特征检测；低于此版本自动回退为 `FoldableState.None`
 
 ---
 
