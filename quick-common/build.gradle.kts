@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 /*
  * Copyright 2026 zhaijie
  *
@@ -20,6 +22,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
 }
 
@@ -42,9 +45,11 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+}
 
-    kotlinOptions {
-        jvmTarget = "17"
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_17)
     }
 }
 
@@ -74,7 +79,7 @@ dependencies {
     // Room
     api(libs.room.runtime)
     api(libs.room.ktx)
-    kapt(libs.room.compiler)
+    ksp(libs.room.compiler)
 
     // Work
     api(libs.work.runtime)
@@ -83,8 +88,8 @@ dependencies {
     // Hilt
     api(libs.hilt.android)
     api(libs.hilt.ext.work)
-    kapt(libs.hilt.compiler)
-    kapt(libs.hilt.ext.compiler)
+    ksp(libs.hilt.compiler)
+    ksp(libs.hilt.ext.compiler)
 
     // Network
     api(libs.retrofit)
@@ -93,7 +98,7 @@ dependencies {
     api(libs.okhttp.logging)
     api(libs.moshi)
     api(libs.moshi.kotlin)
-    kapt(libs.moshi.codegen)
+    ksp(libs.moshi.codegen)
 
     // Kotlin
     api(libs.kotlin.stdlib)
@@ -102,14 +107,13 @@ dependencies {
 
     // UI Utils
     api(libs.glide)
-    kapt(libs.glide.compiler)
+    ksp(libs.glide.compiler)
     api(libs.timber)
     api(libs.brv)
-    api(libs.autosize)
     api(libs.utilcodex)
     api(libs.smartrefresh)
     api(libs.liveeventbus)
-    api(libs.dialogx)
+
     api(libs.therouter)
     api(libs.statelayout)
     api(libs.fragmentVisibility)

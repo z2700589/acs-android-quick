@@ -39,6 +39,7 @@
     <dimen name="quick_Sp14_52">52dp</dimen>
     <dimen name="quick_Sp15_56">56dp</dimen>
     <dimen name="quick_Sp16_60">60dp</dimen>
+    <dimen name="quick_Sp80_400">400dp</dimen>
 
     <!--customer-->
     <dimen name="quick_Sp_100">100dp</dimen>

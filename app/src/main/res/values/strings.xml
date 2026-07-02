@@ -24,6 +24,12 @@
     <string name="login_register_now">立即注册</string>
     <string name="login_forgot_password">忘记密码？</string>
 
+    <!-- 登录页 — 大屏/折叠屏展开态 -->
+    <string name="login_brand_copyright">© 2026 谷川信息</string>
+    <string name="login_brand_version">v1.0.0</string>
+    <string name="login_third_party_label">其它登录方式</string>
+    <string name="login_third_party_wechat">微信登录</string>
+
     <!-- 校验提示 -->
     <string name="login_error_empty_phone">请输入手机号</string>
     <string name="login_error_invalid_phone">手机号格式不正确</string>

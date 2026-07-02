@@ -18,66 +18,18 @@
 package com.acs.quick.common.ui
 
 import android.app.Activity
-import android.graphics.Color
-import android.os.Build
 import android.view.View
-import android.view.Window
-import android.view.WindowManager
 import androidx.core.view.ViewCompat
-import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 
 /**
- * 沉浸式系统栏工具，处理边到边渲染、前景色切换、WindowInsets 适配。
- * 由 [BaseActivity] 自动调用。
+ * 系统栏工具：动态前景色切换、WindowInsets 适配。
+ * 边到边初始化已交由 [androidx.activity.enableEdgeToEdge]，在 [BaseActivity] 中调用。
  *
  * @author Zhai Jie
  */
 object SystemBarHelper {
-
-    /**
-     * 启用边到边渲染。
-     *
-     * @param lightStatusBars     状态栏图标浅色模式
-     * @param lightNavigationBars 导航栏图标浅色模式
-     * @param statusBarScrim      状态栏后方是否绘制半透明遮罩
-     */
-    fun setupEdgeToEdge(
-        activity: Activity,
-        lightStatusBars: Boolean = true,
-        lightNavigationBars: Boolean = true,
-        statusBarScrim: Boolean = false
-    ) {
-        val window = activity.window
-        val decorView = window.decorView
-
-        // 清除主题半透明标志
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS or
-                WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
-
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-
-        // 透明系统栏
-        window.statusBarColor = Color.TRANSPARENT
-        window.navigationBarColor = Color.TRANSPARENT
-
-        val controller = WindowInsetsControllerCompat(window, decorView)
-        controller.isAppearanceLightStatusBars = lightStatusBars
-        controller.isAppearanceLightNavigationBars = lightNavigationBars
-
-        // Android 10+ 手势导航，滑动时短暂显示
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            controller.systemBarsBehavior =
-                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        }
-
-        if (statusBarScrim) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                window.setDecorFitsSystemWindows(false)
-            }
-        }
-    }
 
     /** 动态切换状态栏图标前景色 */
     fun setLightStatusBar(activity: Activity, light: Boolean) {

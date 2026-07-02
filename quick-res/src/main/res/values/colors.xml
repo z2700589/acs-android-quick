@@ -80,6 +80,8 @@
     <color name="quick_black_12alpha">#20000000</color>
     <color name="quick_black_25alpha">#40000000</color>
     <color name="quick_white_70alpha">#B3FFFFFF</color>
+    <color name="quick_white_50alpha">#80FFFFFF</color>
+    <color name="quick_white_35alpha">#59FFFFFF</color>
 
     <!-- 组件专用色 -->
     <color name="quick_line_divider">#DDDDDD</color>

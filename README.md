@@ -76,7 +76,7 @@ Your App ──→ quick-common ──→ quick-res
 | **持久化** | DataStore Preferences | 1.0.0 |
 | **事件总线** | LiveEventBus | 1.8.0 |
 | **日志** | Timber（DEBUG 自动启用） | 5.0.1 |
-| **弹窗** | DialogX | 0.0.49 |
+
 | **下拉刷新** | SmartRefreshLayout | 2.1.0 |
 | **缺省页** | StateLayout | 1.3.5 |
 | **多类型列表** | MultiType | 3.4.1 |

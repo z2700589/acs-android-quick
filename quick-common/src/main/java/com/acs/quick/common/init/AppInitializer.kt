@@ -24,7 +24,6 @@ import com.drake.statelayout.StateConfig
 import com.acs.quick.common.BuildConfig
 import com.acs.quick.common.R
 import com.therouter.TheRouter
-import me.jessyan.autosize.AutoSizeConfig
 import timber.log.Timber
 
 /**
@@ -39,8 +38,6 @@ class AppInitializer : Initializer<Unit> {
             Timber.plant(Timber.DebugTree())
             TheRouter.isDebug = true
         }
-        // 屏蔽系统字体缩放
-        AutoSizeConfig.getInstance().isExcludeFontScale = true
         // BRV 缺省页
         StateConfig.apply {
             loadingLayout = R.layout.quick_layout_loading

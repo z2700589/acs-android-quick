@@ -19,6 +19,7 @@ package com.acs.quick.common.ui.activity
 
 import android.content.pm.ActivityInfo
 import android.content.res.Resources
+import android.graphics.Color
 import android.os.Bundle
 import android.os.IBinder
 import android.os.Looper
@@ -27,6 +28,8 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.SystemBarStyle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -42,7 +45,6 @@ import com.acs.quick.common.utils.SpUtil
 import com.acs.quick.widgets.dialog.dialog.QuickLoadingDialog
 import com.therouter.TheRouter
 import kotlinx.coroutines.launch
-import me.jessyan.autosize.AutoSizeCompat
 import timber.log.Timber
 
 /**
@@ -71,9 +73,6 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
     /** 导航栏图标浅色模式 */
     protected open val lightNavigationBars: Boolean = true
 
-    /** 状态栏下方绘制半透明遮罩 */
-    protected open val statusBarScrim: Boolean = false
-
     /** 根布局自动处理 WindowInsets */
     protected open val consumeWindowInsets: Boolean = true
 
@@ -86,6 +85,18 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
     // ---- 生命周期 ----
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge(
+            statusBarStyle = if (lightStatusBars) {
+                SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT)
+            } else {
+                SystemBarStyle.dark(Color.TRANSPARENT)
+            },
+            navigationBarStyle = if (lightNavigationBars) {
+                SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT)
+            } else {
+                SystemBarStyle.dark(Color.TRANSPARENT)
+            }
+        )
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         TheRouter.inject(this)
@@ -135,12 +146,6 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
     /** 应用沉浸式系统栏，在 [initView] 之前调用 */
     private fun applySystemBars() {
         configureSystemBars()
-        SystemBarHelper.setupEdgeToEdge(
-            activity = this,
-            lightStatusBars = lightStatusBars,
-            lightNavigationBars = lightNavigationBars,
-            statusBarScrim = statusBarScrim
-        )
         if (consumeWindowInsets) {
             SystemBarHelper.applyInsets(
                 rootView = mBinding.root,
@@ -221,12 +226,4 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
         }
     }
 
-    // ---- 屏幕适配 ----
-
-    override fun getResources(): Resources {
-        if (Looper.myLooper() == Looper.getMainLooper()) {
-            AutoSizeCompat.autoConvertDensityOfGlobal((super.getResources()))
-        }
-        return super.getResources()
-    }
 }

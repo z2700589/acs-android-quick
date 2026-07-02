@@ -4,12 +4,8 @@
     <style name="quick_theme_full_screen" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorAccent">@color/quick_S5_247BFF</item>
         <item name="background">@color/quick_M9_F5F7FA</item>
-        <!--将顶部状态栏设置为透明，并将界面内容布局上边界上提至状态栏顶部-->
-        <item name="android:windowTranslucentStatus">true</item>
         <item name="android:screenOrientation">portrait</item>
         <item name="android:configChanges">keyboardHidden|orientation|screenSize</item>
-        <!--如果有底部虚拟导航栏，则将底部虚拟导航栏设置为透明，并将界面内容布局下边界下沉至虚拟导航栏底部-->
-        <item name="android:windowTranslucentNavigation">true</item>
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>

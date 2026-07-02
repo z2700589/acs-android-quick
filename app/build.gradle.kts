@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 /*
  * Copyright 2026 zhaijie
  *
@@ -19,6 +21,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
 }
 
@@ -29,7 +32,7 @@ android {
     defaultConfig {
         applicationId = "com.acs.quick.sample"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0.0"
         multiDexEnabled = true
@@ -44,17 +47,21 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+}
 
-    kotlinOptions {
-        jvmTarget = "17"
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_17)
     }
 }
 
 dependencies {
     implementation(project(":quick-common"))
+    implementation(libs.androidx.window)
 
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    implementation(libs.window)
+    ksp(libs.hilt.compiler)
     kapt(libs.therouter.compiler)
 
     testImplementation(libs.junit)

@@ -29,8 +29,13 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions { jvmTarget = "17" }
     buildFeatures { dataBinding = true }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+    }
 }
 
 dependencies {
@@ -40,7 +45,6 @@ dependencies {
     api(libs.androidx.fragment.ktx)
     api(libs.material)
     api(libs.utilcodex)
-    api(libs.autosize)
     api(libs.brv)
     api(libs.multitype)
 }
