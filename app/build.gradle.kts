@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.gradle.api.tasks.compile.JavaCompile
 
 /*
  * Copyright 2026 zhaijie
@@ -20,7 +21,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
 }
@@ -40,7 +41,17 @@ android {
     }
 
     buildFeatures {
+        compose = true
         dataBinding = true
+    }
+
+    packaging {
+        jniLibs {
+            keepDebugSymbols += setOf(
+                "**/libandroidx.graphics.path.so",
+                "**/libdatastore_shared_counter.so"
+            )
+        }
     }
 
     compileOptions {
@@ -55,14 +66,26 @@ kotlin {
     }
 }
 
+tasks.withType<JavaCompile>().configureEach {
+    options.isWarnings = false
+    options.compilerArgs.addAll(listOf("-Xlint:none", "-Xlint:-deprecation", "-nowarn"))
+}
+
 dependencies {
     implementation(project(":quick-common"))
     implementation(libs.androidx.window)
+    implementation(platform(libs.compose.bom))
+    implementation(libs.compose.foundation)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.ui)
+    implementation(libs.compose.ui.tooling.preview)
 
     implementation(libs.hilt.android)
     implementation(libs.window)
     ksp(libs.hilt.compiler)
-    kapt(libs.therouter.compiler)
+    ksp(libs.therouter.compiler)
+
+    debugImplementation(libs.compose.ui.tooling)
 
     testImplementation(libs.junit)
 }

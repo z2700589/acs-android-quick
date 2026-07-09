@@ -19,8 +19,6 @@ package com.acs.quick.widgets.toast.custom
 
 import android.app.Dialog
 import android.content.Context
-import android.graphics.Point
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
@@ -56,20 +54,9 @@ class CommonDialog(
             WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
         )
         window?.apply {
-            val d = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                var display = context.display
-                if (display == null) {
-                    display = windowManager.defaultDisplay!!
-                }
-                display
-            } else {
-                windowManager.defaultDisplay
-            }
-            val size = Point()
-            d.getSize(size)
             attributes = attributes?.apply {
                 windowAnimations = android.R.style.Animation_Toast
-                val maxWidth = (size.x * 0.7f).toInt()
+                val maxWidth = (context.resources.displayMetrics.widthPixels * 0.7f).toInt()
                 if (width > maxWidth) {
                     width = maxWidth
                 }

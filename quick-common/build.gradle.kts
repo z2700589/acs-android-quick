@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.gradle.api.tasks.compile.JavaCompile
 
 /*
  * Copyright 2026 zhaijie
@@ -20,7 +21,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.kotlin.parcelize)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
@@ -51,6 +51,11 @@ kotlin {
     compilerOptions {
         jvmTarget.set(JvmTarget.JVM_17)
     }
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    options.isWarnings = false
+    options.compilerArgs.addAll(listOf("-Xlint:none", "-Xlint:-deprecation", "-nowarn"))
 }
 
 dependencies {
@@ -120,7 +125,7 @@ dependencies {
     api(libs.therouter)
     api(libs.statelayout)
     api(libs.fragmentVisibility)
-    kapt(libs.therouter.compiler)
+    ksp(libs.therouter.compiler)
 
     // Test
     testImplementation(libs.junit)

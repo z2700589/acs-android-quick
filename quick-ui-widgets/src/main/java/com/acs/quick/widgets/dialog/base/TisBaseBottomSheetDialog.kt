@@ -31,6 +31,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
 import androidx.annotation.LayoutRes
 import androidx.annotation.StyleRes
+import androidx.core.os.BundleCompat
 import androidx.fragment.app.FragmentManager
 import com.acs.quick.widgets.R
 import com.acs.quick.widgets.dialog.action.OnDialogDismissListener
@@ -119,9 +120,10 @@ abstract class TisBaseBottomSheetDialog<T : TisBaseBottomSheetDialog<T>> : Botto
         super.onCreate(savedInstanceState)
         //Restore UI status
         savedInstanceState?.let {
-            baseParams = it.getParcelable(KEY_PARAMS) ?: BaseDialogParams()
-            viewHandlerListener = savedInstanceState.getParcelable(KEY_VIEW_HANDLER)
-            onDialogDismissListener = savedInstanceState.getParcelable(KEY_DISMISS_LISTENER)
+            baseParams = BundleCompat.getParcelable(it, KEY_PARAMS, BaseDialogParams::class.java)
+                ?: BaseDialogParams()
+            viewHandlerListener = BundleCompat.getParcelable(it, KEY_VIEW_HANDLER, ViewBottomHandlerListener::class.java)
+            onDialogDismissListener = BundleCompat.getParcelable(it, KEY_DISMISS_LISTENER, OnDialogDismissListener::class.java)
         }
 
         if (viewHandlerListener == null) {
@@ -145,7 +147,6 @@ abstract class TisBaseBottomSheetDialog<T : TisBaseBottomSheetDialog<T>> : Botto
         super.onViewCreated(view, savedInstanceState)
         viewHandlerListener?.convertView(ViewHolder.create(view), this)
         initView(view)
-        retainInstance = true
         //Set open Keyboard
         if (this.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT && baseParams.needKeyboardViewId != 0) {
             keyboardEditText = view.findViewById(baseParams.needKeyboardViewId)
@@ -182,9 +183,7 @@ abstract class TisBaseBottomSheetDialog<T : TisBaseBottomSheetDialog<T>> : Botto
         super.onStart()
 
         //Get screen size
-        val point = Point()
-        val windowManager = activity?.getSystemService(Context.WINDOW_SERVICE) as? WindowManager
-        windowManager?.defaultDisplay?.getSize(point)
+        val point = Point(resources.displayMetrics.widthPixels, resources.displayMetrics.heightPixels)
 
         //Set window
         dialog?.window?.let {
@@ -255,10 +254,6 @@ abstract class TisBaseBottomSheetDialog<T : TisBaseBottomSheetDialog<T>> : Botto
         keyboardPreDrawListener = null
         keyboardEditText = null
 
-        val dialog = dialog
-        if (dialog != null && retainInstance) {
-            dialog.setDismissMessage(null)
-        }
         super.onDestroyView()
     }
 

@@ -42,13 +42,13 @@ fun Context.px2dp(pxValue: Float): Int {
 
 /** sp → px */
 fun Context.sp2px(spValue: Float): Int {
-    val scale = resources.displayMetrics.scaledDensity
+    val scale = resources.displayMetrics.density * resources.configuration.fontScale
     return (spValue * scale + 0.5f).toInt()
 }
 
 /** px → sp */
 fun Context.px2sp(pxValue: Float): Int {
-    val scale = resources.displayMetrics.scaledDensity
+    val scale = resources.displayMetrics.density * resources.configuration.fontScale
     return (pxValue / scale + 0.5f).toInt()
 }
 
@@ -66,13 +66,13 @@ fun Fragment.px2dp(pxValue: Float): Int {
 
 /** sp → px */
 fun Fragment.sp2px(spValue: Float): Int {
-    val scale = resources.displayMetrics.scaledDensity
+    val scale = resources.displayMetrics.density * resources.configuration.fontScale
     return (spValue * scale + 0.5f).toInt()
 }
 
 /** px → sp */
 fun Fragment.px2sp(pxValue: Float): Int {
-    val scale = resources.displayMetrics.scaledDensity
+    val scale = resources.displayMetrics.density * resources.configuration.fontScale
     return (pxValue / scale + 0.5f).toInt()
 }
 

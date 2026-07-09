@@ -18,10 +18,12 @@
 package com.acs.quick.sample.main
 
 import androidx.activity.viewModels
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import com.acs.quick.common.config.RouteUrl
 import com.acs.quick.common.ui.activity.BaseActivity
 import com.acs.quick.sample.R
 import com.acs.quick.sample.databinding.ActivityMainBinding
+import com.acs.quick.sample.ui.QuickComposeTheme
 import com.therouter.router.Route
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,7 +35,16 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun getLayoutId(): Int = R.layout.activity_main
 
-    override fun initView() {}
+    override fun initView() {
+        mBinding.composeView.apply {
+            setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+            setContent {
+                QuickComposeTheme {
+                    MainScreen()
+                }
+            }
+        }
+    }
 
     override fun initData() {}
 
